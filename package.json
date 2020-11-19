@@ -13,7 +13,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3"
   },
-  "homepage": "https://mabelm1.github.io/around-react",
+  "homepage": "https://mabelm1.github.io/react-around-auth",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
