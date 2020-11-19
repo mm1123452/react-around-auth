@@ -11,18 +11,15 @@ class Auth {
         body: JSON.stringify({email, password})
       })
       .then((response) => {
-        try {
-          if (response.status === 201){
-            return response.json();
-          }
-        } catch(e){
-            return (e)
+        if (response.status === 201){
+          return response.json();
+        }  else {
+          return Promise.reject(`Error: ${response.status}`);
         }
       })
       .then((res) => {
         return res;
       })
-      .catch((err) => console.log(err));
     }; 
 
     signin(email, password){
@@ -32,12 +29,10 @@ class Auth {
         body: JSON.stringify({email, password})
       })
       .then((response) => {
-        try {
-          if (response.status === 200){
-            return response.json();
-          }
-        } catch(e){
-            return (e)
+        if (response.status === 200){
+          return response.json();
+        } else {
+          return Promise.reject(`Error: ${response.status}`);
         }
       })
       .then((res) => {
@@ -46,8 +41,7 @@ class Auth {
         } else {
           return Promise.reject(`Error: ${res.status}`);
         }
-      })
-      .catch((err) => console.log(err));
+      })     
     }; 
 
     getContent(token){
@@ -56,18 +50,15 @@ class Auth {
         headers: {...this.headers, "Authorization" : `Bearer ${token}`} 
       })
       .then((response) => {
-        try {
           if (response.status === 200){
             return response.json();
+          } else {
+            return Promise.reject(`Error: ${response.status}`);
           }
-        } catch(e){
-            return (e)
-        }
       })
       .then((res) => {
         return res;     
       })
-      .catch((err) => console.log(err));
     }; 
   }
 

@@ -33,7 +33,7 @@ function App() {
   );
   const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [cardId, setCardId] = React.useState();
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
@@ -69,7 +69,6 @@ function App() {
           }
           setloggedIn(true)
           setUserData({...userData,data})
-         
           history.push("/");
         }
       })
@@ -135,6 +134,7 @@ function App() {
   };
 
   const handleCardClick = (card) => {
+    console.log(card)
     setSelectedCard(card);
     setIsImagePopupOpen(true);
   };
@@ -184,12 +184,11 @@ function App() {
       .deleteCard(cardId)
       .then((res) => {
         setCardId(null);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       });
-
-    closeAllPopups();
   };
 
   const handleLogin = (email, password) => {
@@ -201,6 +200,9 @@ function App() {
         setloggedIn(true)
         history.push('/');
       } 
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
@@ -215,6 +217,9 @@ function App() {
         setLoginSucces(false)
         setShowTooltip(true)
       }
+    })
+    .catch((err) => {
+      console.log(err);
     });
   }
 
